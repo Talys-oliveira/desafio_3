@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
-import { pets } from './pets/PetsEntity';
+import { Pets } from './pets/PetsEntity';
 import { PetsModule } from './pets/PetsModule';
+
+console.log(process.env.DB_PORT)
 
 @Module({
   imports: [
@@ -16,18 +16,29 @@ import { PetsModule } from './pets/PetsModule';
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'localhost',
-      port: 3306,
+      port: parseInt('3306'),
       username: 'root',
       password: '',
       database: 'dbdogs',
-      entities: [pets],
+      entities: [Pets],
       autoLoadEntities: true,
       synchronize: true,
     }),
-    TypeOrmModule.forFeature([pets]),
+    // TypeOrmModule.forRoot({
+    //   type: 'mysql',
+    //   host: 'localhost',
+    //   port: parseInt(process.env.DB_PORT || '3306'),
+    //   username: process.env.DB_USERNAME,
+    //   password: process.env.DB_PASSWORD,
+    //   database: process.env.DB_NAME,
+    //   entities: [Pets],
+    //   autoLoadEntities: true,
+    //   synchronize: true,
+    // }),
+    TypeOrmModule.forFeature([Pets]),
     PetsModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}

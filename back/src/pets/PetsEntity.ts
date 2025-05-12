@@ -1,12 +1,12 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
-export class pets {
-  @PrimaryGeneratedColumn()
-  image: string;
-
+export class Pets {
   @PrimaryGeneratedColumn()
   id: number;
+
+  @Column({unique: true})
+  sku: number;
 
   @Column()
   name: string;
@@ -19,4 +19,11 @@ export class pets {
 
   @Column()
   price: number;
+
+  @Column()
+  images: string;
+
+  @Column()
+  additional_information: string
+
 }

@@ -1,14 +1,54 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useEffect, useState } from 'react'
+// import reactLogo from './assets/react.svg'
+// import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
+  const [pets, setPets] = useState([])
+
+  const fetchPets = async () => {
+    try {
+      const resultado = await fetch('/pets');
+
+      if(!resultado.ok){
+        console.log('error ao buscar os pets');
+      }
+
+      const data: any = await resultado.json()
+
+      console.log(data);
+      
+
+      setPets(data)
+    } catch (error) {
+      console.log(error);      
+    }
+  }
+
+  useEffect(() => { fetchPets() }, [])
+
+  if(!pets.length) return <p>pets nao encontrados</p>
 
   return (
     <>
-      <div>
+      <h2>home</h2>
+      {
+        <ul>
+          {
+            pets.map((pet: any) => {
+              return (
+                <li >
+                  <p>{pet.id}</p>
+                  <p>{pet.name}</p>
+                  <p>{pet.price.toFixed(2)}</p>
+                </li>
+              )
+            })
+          }
+        </ul>
+      }
+      {/* <div>
         <a href="https://vite.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
         </a>
@@ -27,7 +67,7 @@ function App() {
       </div>
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
-      </p>
+      </p> */}
     </>
   )
 }
