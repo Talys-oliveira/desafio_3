@@ -1,23 +1,24 @@
-//import React, { useEffect, useState } from 'react';
-//import PetsCard from './PetsCard';
-//import { Pet } from '../types/pets';
+/* import React, { useEffect, useState } from 'react';
+import PetsCard from './PetsCard';
+import { Pet } from '../types/Pets';
 
-/*const PetList: React.FC = () => {
+const PetsList: React.FC = () => {
     const [pets, setPets] = useState<Pet[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 }
 
-const fetchPets = async () => {
+const fetchPetS = async () => {
     try {
-    const res = await fetch('http://localhost:3000/api/pets');
+    const res = await fetch('/pets');
     if (!res.ok) {
         throw new Error(`Erro ao buscar os pets ${res.statusText}`);
     }
-    console.log(res);
+    //console.log(res);
 
     const data = await res.json();
-    setPets(data);
+    console.log(data.result);
+    setpets(data.result);
     } catch (err: any) {
         setError(err.message || 'Erro desconhecido');
     } finally {
@@ -28,11 +29,12 @@ const fetchPets = async () => {
 useEffect(() => {    
 }, []);
 
+if (!pets.length) return <p>Products emoty...</p>
 if (loading)  return <p>Carregando pets...</p>
 if (error) return <p>Erro: {error}</p>
 
 return (
-    <div style={styles.grid}
+    <div style={styles.grid}>
     {pets.map((pets) => (
      <PetsCard key={pets.name + 1} pets={pets} />
     ))}
@@ -53,9 +55,9 @@ export default PetsList;
   
 
 function setPets(data: any) {
-        throw new Error('Function not implemented.');
+        throw new Error('Function not implemented.'); 
     }
 
-
-
 */
+
+

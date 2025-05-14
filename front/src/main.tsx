@@ -3,14 +3,15 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.tsx'
 import { BrowserRouter, Route, Routes } from 'react-router'
+import Page from './components/Page.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
    <BrowserRouter>
     <Routes>
       <Route path="/" element={<App />} />
-      <Route path="/pets" element={<App />} />
-      <Route path="/products" element={<App />} />
+      <Route path="/pets" element={<Page title={'Title category'}/>} />
+      <Route path="/products" element={<Page title={'Title products'}  />} />
     </Routes>
    
    </BrowserRouter>

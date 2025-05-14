@@ -5,6 +5,7 @@ type Pet = {
     name: string;
     size: string;
     price: number;
+    title: string;
     images: string[];
 };
 
@@ -29,17 +30,17 @@ const styles = {
 }
 
 const PetsCard: React.FC<PetsCardProps> = ({ pets }) => {
-    const { name, size, price, images } = pets; 
+    const { name, size, price, images, title } = pets; 
 
     return (
         <div style={styles.card}>
             <img 
-            src={`/img_dogs/${images[0] || 'dog_1.png'}`}
+            src={'/public' + images[0] || '/img_dogs/dog_1.png'}
             alt={name}
             style={styles.image}
             />
            
-           <h2>{name}</h2>
+           <h2>Name: {name || title}</h2>
            <p>Size: {size}</p>
            <p>Price: ${price.toFixed(2)}</p>    
         </div>
@@ -47,4 +48,6 @@ const PetsCard: React.FC<PetsCardProps> = ({ pets }) => {
 };
 
 export default PetsCard;
+//'/public' + images[0] || '/img_dogs/dog_1.png'
 //{images[0] || '/img_dogs/dog_1.png'}  
+//`/img_dogs/${images[0] || 'dog_1.png'

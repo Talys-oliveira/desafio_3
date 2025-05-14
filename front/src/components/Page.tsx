@@ -1,5 +1,5 @@
 
-import PetsCard from './PetsCard';
+/*import PetsCard from './PetsCard';
 import { Pet } from '../types/Pets';
 
 const pets: Pet[] = [
@@ -22,8 +22,22 @@ const pets: Pet[] = [
     images: ['dog_3.png'],
   },
 ];
+*/
 
-export default function Page() {
+type IProps = {
+    title: string;
+}
+
+export default function Page(props: IProps) {
+    const { title } = props;
+
+    return <h2>{title}</h2>
+}
+
+
+
+
+/*export default function Page() {
   return (
     <div>
       <h2>Pets disponíveis</h2>
@@ -34,7 +48,7 @@ export default function Page() {
       </div>
     </div>
   );
-}
+}*/
 
 
 
